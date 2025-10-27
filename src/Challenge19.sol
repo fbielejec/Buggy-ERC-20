@@ -101,9 +101,7 @@ contract Challenge19 {
     
         uint256 fromBalance = _balances[from];
         uint256 toBalance = _balances[to];
-    
-        _beforeTokenTransfer(from, to, amount);
-    
+
         require(
             fromBalance >= amount,
             "ERC20: transfer amount exceeds balance"
@@ -116,8 +114,6 @@ contract Challenge19 {
         }
     
         emit Transfer(from, to, amount);
-    
-        _afterTokenTransfer(from, to, amount);
     }
 
     function _approve(address owner, address spender, uint256 value) internal {
@@ -158,8 +154,4 @@ contract Challenge19 {
 
         emit Transfer(account, address(0), value);
     }
-
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual {}
-
-    function _afterTokenTransfer(address from, address to, uint256 amount) internal virtual {}
 }

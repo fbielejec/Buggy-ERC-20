@@ -17,7 +17,6 @@ contract Challenge02Test is Test {
 
       address robber = address(0xBADD);
 
-      // robber set allowance and steals
       vm.prank(robber);
       vm.expectRevert("insufficient allowance");
       token.transferFrom(owner, robber, 1e18);

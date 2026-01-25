@@ -9,7 +9,7 @@
 
 pragma solidity ^0.8.20;
 
-contract Challlenge01 {
+contract Challenge01 {
 
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
@@ -32,6 +32,11 @@ contract Challlenge01 {
     constructor(string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
+    }
+
+    // added for testing
+    function mint(address to, uint256 value) public virtual {
+        _mint(to, value);
     }
 
     function name() public view virtual returns (string memory) {
@@ -85,6 +90,9 @@ contract Challlenge01 {
         if (fromBalance < value) revert InsufficientBalance(from, fromBalance, value);
 
         _balances[to] += value;
+        // missing decrease of sender's balance
+        _balances[from] -= value;
+
         emit Transfer(from, to, value);
     }
 

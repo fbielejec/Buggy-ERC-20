@@ -19,9 +19,7 @@ contract Challenge02Test is Test {
 
       // robber set allowance and steals
       vm.prank(robber);
-      vm.expectRevert("sender is not owner");
-      token.approve(owner, robber, 1e18);
-      vm.expectRevert();
+      vm.expectRevert("insufficient allowance");
       token.transferFrom(owner, robber, 1e18);
     }
 

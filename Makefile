@@ -1,3 +1,11 @@
-.PHONY: test-challenge1
-test-challenge1:
-	forge test --match-path test/Challenge1.t.sol -vv
+.PHONY: test
+test:
+	forge test
+
+.PHONY: test-challenge01
+test-challenge01:
+	forge test --match-path test/Challenge01.t.sol -vv
+
+.PHONY: test-challenge02
+test-challenge02:
+	forge test --match-path test/Challenge02.t.sol -vv

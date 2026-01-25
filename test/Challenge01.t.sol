@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {Test, console} from "forge-std/Test.sol";
 import {Challenge01} from "../src/Challenge01.sol";
 
-contract Challenge1Test is Test {
+contract Challenge01Test is Test {
     Challenge01 public token;
 
     function setUp() public {

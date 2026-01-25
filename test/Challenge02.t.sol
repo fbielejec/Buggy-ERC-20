@@ -11,17 +11,18 @@ contract Challenge02Test is Test {
         token = new Challenge02("Token", "TKN", 18);
     }
 
-    /* function testTransfer() public { */
-    /*     token.mint(address(this), 1e18); */
+    function test_RevertWhen_TransferFromInsufficientAllowance() public {
+      address owner = address(0xABCD);
+      token.mint(owner, 1e18);
 
-    /*     assertTrue(token.transfer(address(0xBEEF), 1e18)); */
-    /*     assertEq(token.totalSupply(), 1e18); */
+      address robber = address(0xBADD);
 
-    /*     assertEq(token.balanceOf(address(this)), 0); */
-    /*     assertEq(token.balanceOf(address(0xBEEF)), 1e18); */
-    /* } */
-
-// test transferFrom below approval
-
+      // robber set allowance and steals
+      vm.prank(robber);
+      vm.expectRevert("sender is not owner");
+      token.approve(owner, robber, 1e18);
+      vm.expectRevert();
+      token.transferFrom(owner, robber, 1e18);
+    }
 
 }

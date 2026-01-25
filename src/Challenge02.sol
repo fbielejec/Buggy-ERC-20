@@ -40,8 +40,13 @@ contract Challenge02 {
     }
 
     function approve(address owner, address spender, uint256 amount) public {
-        allowance[owner][spender] = amount;
-        emit Approval(owner, spender, amount);
+
+      if (msg.sender != owner) {
+        revert ("sender is not owner");
+      }
+
+      allowance[owner][spender] = amount;
+      emit Approval(owner, spender, amount);
     }
 
     function transfer(address to, uint256 amount) public virtual returns (bool) {
@@ -73,6 +78,10 @@ contract Challenge02 {
         return true;
     }
 
+    // added for testing
+    function mint(address to, uint256 value) public virtual {
+        _mint(to, value);
+    }
 
     function _mint(address to, uint256 amount) internal virtual {
         totalSupply += amount;

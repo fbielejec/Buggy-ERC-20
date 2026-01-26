@@ -25,6 +25,7 @@ contract Challenge03Test is Test {
       vm.expectRevert("Challenge3: insufficient allowance");
       token.burn(victim, 1e18);
 
+      // no token was burnt
       assertEq(token.balanceOf(victim), 1e18);
     }
 

@@ -59,7 +59,8 @@ contract Challenge05 {
 
     function transferFrom(address from, address to, uint256 value) public returns (bool) {
         _spendAllowance(from, msg.sender, value);
-        _transfer(to, from, value);
+        /* _transfer(to, from, value); */
+        _transfer(from, to, value);
         return true;
     }
 
@@ -92,7 +93,6 @@ contract Challenge05 {
         require(account != address(0), "Challenge5: mint to zero address");
         _totalSupply += value;
         _balances[account] += value;
-        // account is the owner
-        emit Transfer(account, account, value);
+        emit Transfer(address(0), account, value);
     }
 }

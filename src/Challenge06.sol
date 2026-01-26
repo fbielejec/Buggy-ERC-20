@@ -2,22 +2,22 @@
 
 /// ██████╗ ██╗  ██╗ █████╗ ██╗     ██╗     ███████╗███╗   ██╗ ██████╗ ███████╗
 /// ██╔════╝██║  ██║██╔══██╗██║     ██║     ██╔════╝████╗  ██║██╔════╝ ██╔════╝
-/// ██║     ███████║███████║██║     ██║     █████╗  ██╔██╗ ██║██║  ███╗█████╗  
-/// ██║     ██╔══██║██╔══██║██║     ██║     ██╔══╝  ██║╚██╗██║██║   ██║██╔══╝  
+/// ██║     ███████║███████║██║     ██║     █████╗  ██╔██╗ ██║██║  ███╗█████╗
+/// ██║     ██╔══██║██╔══██║██║     ██║     ██╔══╝  ██║╚██╗██║██║   ██║██╔══╝
 /// ╚██████╗██║  ██║██║  ██║███████╗███████╗███████╗██║ ╚████║╚██████╔╝███████╗
 /// ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
-                                                                           
-/// ██████╗  ██████╗                                                          
-/// ██╔═████╗██╔════╝                                                          
-/// ██║██╔██║███████╗                                                          
-/// ████╔╝██║██╔═══██╗                                                         
-/// ╚██████╔╝╚██████╔╝                                                         
-/// ╚═════╝  ╚═════╝                                                          
-                                                                           
+
+/// ██████╗  ██████╗
+/// ██╔═████╗██╔════╝
+/// ██║██╔██║███████╗
+/// ████╔╝██║██╔═══██╗
+/// ╚██████╔╝╚██████╔╝
+/// ╚═════╝  ╚═════╝
+
 pragma solidity ^0.8.20;
 
 contract Challenge06 {
-    
+
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
     event Blacklisted(address indexed account);
@@ -75,7 +75,10 @@ contract Challenge06 {
     }
 
     function transferFrom(address from, address to, uint256 value) public returns (bool) {
-        require(!blacklist[msg.sender] && !blacklist[to], "Sender or receiver blacklisted");
+        /* require(!blacklist[msg.sender] && !blacklist[to], "Sender or receiver blacklisted"); */
+      // what matters is that from and to are on the blacklist, not the 3rd party that executes the approved transfer
+        require(!blacklist[from] && !blacklist[to], "Sender or receiver blacklisted");
+
         _spendAllowance(from, msg.sender, value);
         _transfer(from, to, value);
         return true;

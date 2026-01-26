@@ -6,7 +6,7 @@ import {Challenge05} from "../src/Challenge05.sol";
 
 contract Challenge05Test is Test {
 
-    function test_TransferFromRevertWhen_Paused() public {
+    function test_MintEmitsTransfer() public {
       vm.expectEmit();
       emit Challenge05.Transfer(address(this), address(this), 1000000 * 10 ** 18);
       new Challenge05();

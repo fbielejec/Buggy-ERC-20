@@ -2,18 +2,18 @@
 
 /// ██████╗ ██╗  ██╗ █████╗ ██╗     ██╗     ███████╗███╗   ██╗ ██████╗ ███████╗
 /// ██╔════╝██║  ██║██╔══██╗██║     ██║     ██╔════╝████╗  ██║██╔════╝ ██╔════╝
-/// ██║     ███████║███████║██║     ██║     █████╗  ██╔██╗ ██║██║  ███╗█████╗  
-/// ██║     ██╔══██║██╔══██║██║     ██║     ██╔══╝  ██║╚██╗██║██║   ██║██╔══╝  
+/// ██║     ███████║███████║██║     ██║     █████╗  ██╔██╗ ██║██║  ███╗█████╗
+/// ██║     ██╔══██║██╔══██║██║     ██║     ██╔══╝  ██║╚██╗██║██║   ██║██╔══╝
 /// ╚██████╗██║  ██║██║  ██║███████╗███████╗███████╗██║ ╚████║╚██████╔╝███████╗
 /// ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
-                                                                           
-/// ██████╗  ███████╗                                                          
-/// ██╔═████╗██╔════╝                                                          
-/// ██║██╔██║███████╗                                                          
-/// ████╔╝██║╚════██║                                                          
-/// ╚██████╔╝███████║                                                          
-/// ╚═════╝ ╚══════╝                                                          
-                                                                           
+
+/// ██████╗  ███████╗
+/// ██╔═████╗██╔════╝
+/// ██║██╔██║███████╗
+/// ████╔╝██║╚════██║
+/// ╚██████╔╝███████║
+/// ╚═════╝ ╚══════╝
+
 pragma solidity ^0.8.20;
 
 contract Challenge05 {
@@ -61,8 +61,8 @@ contract Challenge05 {
         _spendAllowance(from, msg.sender, value);
         _transfer(to, from, value);
         return true;
-    }   
-    
+    }
+
     function _transfer(address from, address to, uint256 value) internal {
         require(to != address(0), "Challenge5: transfer to zero address");
         uint256 fromBalance = _balances[from];
@@ -92,6 +92,7 @@ contract Challenge05 {
         require(account != address(0), "Challenge5: mint to zero address");
         _totalSupply += value;
         _balances[account] += value;
-        emit Transfer(address(0), account, value);
+        // account is the owner
+        emit Transfer(account, account, value);
     }
 }

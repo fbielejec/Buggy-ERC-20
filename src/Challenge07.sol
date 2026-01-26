@@ -90,7 +90,7 @@ contract Challenge07 {
         return true;
     }
 
-    function mint(address to, uint256 value) public {
+    function mint(address to, uint256 value) public onlyOwner {
         _mint(to, value);
     }
 

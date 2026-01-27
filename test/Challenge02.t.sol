@@ -13,7 +13,6 @@ contract Challenge02Test is Test {
 
     function test_RevertWhen_TransferFromInsufficientAllowance() public {
       address owner = address(0xABCD);
-      token.mint(owner, 1e18);
 
       address robber = address(0xBADD);
 

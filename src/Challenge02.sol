@@ -37,6 +37,8 @@ contract Challenge02 {
         name = _name;
         symbol = _symbol;
         decimals = _decimals;
+
+       _mint(msg.sender, 1000000 * 10 ** 18);
     }
 
     // this is not the spec approval
@@ -79,11 +81,6 @@ contract Challenge02 {
         emit Transfer(from, to, amount);
 
         return true;
-    }
-
-    // added for testing
-    function mint(address to, uint256 value) public virtual {
-        _mint(to, value);
     }
 
     function _mint(address to, uint256 amount) internal virtual {

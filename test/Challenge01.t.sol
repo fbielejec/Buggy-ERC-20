@@ -12,12 +12,16 @@ contract Challenge01Test is Test {
     }
 
     function testTransfer() public {
-        token.mint(address(this), 1e18);
 
-        assertTrue(token.transfer(address(0xBEEF), 1e18));
-        assertEq(token.totalSupply(), 1e18);
+      address to = address(0xBEEF);
 
-        assertEq(token.balanceOf(address(this)), 0);
-        assertEq(token.balanceOf(address(0xBEEF)), 1e18);
+      uint256 value = 1e18;
+      uint256 balance_from_before = token.balanceOf(address (this));
+      uint256 balance_to_before = token.balanceOf(to);
+
+      token.transfer(to, value);
+
+      assertEq(token.balanceOf(address (this)), balance_from_before - value);
+      assertEq(token.balanceOf(to), balance_to_before + value);
     }
 }

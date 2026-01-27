@@ -32,11 +32,7 @@ contract Challenge01 {
     constructor(string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
-    }
-
-    // added for testing
-    function mint(address to, uint256 value) public virtual {
-        _mint(to, value);
+       _mint(msg.sender, 1000000 * 10 ** 18);
     }
 
     function name() public view virtual returns (string memory) {

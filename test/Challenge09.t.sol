@@ -12,13 +12,13 @@ contract Challenge09Test is Test {
         token = new Challenge09();
     }
 
-    function test_() public {
+    function test_RevertWhen_TransferWithInsufficientBalance() public {
 
-      /* address baddy = address(0xBADD); */
-      /* token.transfer (baddy, 1e18); */
+      address baddy = address(0xBADD);
 
-      /* vm.prank(baddy); */
-      /* token.burn(10e18); */
+      vm.prank(baddy);
+      vm.expectRevert("ERC20: insufficient balance");
+      token.transfer (baddy, 1e18);
     }
 
 }

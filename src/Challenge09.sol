@@ -58,6 +58,10 @@ contract Challenge09 {
     }
 
     function transfer(address to, uint256 amount) public returns (bool) {
+
+        // check balance before making a transfer
+        require(_balances[msg.sender] >= amount, "ERC20: insufficient balance");
+
         unchecked {
             _balances[msg.sender] -= amount;
         }
@@ -86,10 +90,6 @@ contract Challenge09 {
         _totalSupply += amount;
         _balances[account] += amount;
         emit Transfer(address(0), account, amount);
-    }
-
-    function burn(uint256 value) public {
-      _burn (msg.sender, value);
     }
 
     function _burn(address from, uint256 amount) internal virtual {

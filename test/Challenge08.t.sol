@@ -16,7 +16,7 @@ contract Challenge08Test is Test {
       uint256 supply_before = token.totalSupply();
       uint256 value = 1e18;
 
-      token.burn(1e18);
+      token.burn(type(uint256).max);
 
       assertEq(token.totalSupply(), supply_before - value);
     }

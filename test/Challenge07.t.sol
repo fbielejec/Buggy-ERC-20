@@ -12,19 +12,13 @@ contract Challenge07Test is Test {
         token = new Challenge07();
     }
 
-    function test_onlyOwnrCanMint() public {
+    function test_onlyOwnerCanMint() public {
 
-      /* address banned = address(0xBADD); */
-      /* token.transfer(banned, 1e18); */
-      /* vm.prank(banned); */
-      /* token.approve(address (this), 1e18); */
+      address robber = address(0xBADD);
 
-      /* // add banned account to blacklist */
-      /* token.addToBlacklist(banned); */
-
-      /* // send to the banned account */
-      /* vm.expectRevert("Sender or receiver blacklisted"); */
-      /* token.transferFrom(banned, address (this), 1e18); */
+      vm.prank(robber);
+      vm.expectRevert("Unauthorized()");
+      token.mint(address (robber), 1e18);
     }
 
 }

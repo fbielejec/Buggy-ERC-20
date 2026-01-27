@@ -33,3 +33,7 @@ test-challenge07:
 .PHONY: test-challenge08
 test-challenge08:
 	forge test --match-path test/Challenge08.t.sol -vv
+
+.PHONY: test-challenge09
+test-challenge09:
+	forge test --match-path test/Challenge09.t.sol -vv

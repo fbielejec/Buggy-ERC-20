@@ -42,7 +42,7 @@ contract Challenge10 {
     }
 
     modifier onlyOwner() {
-        msg.sender == owner;
+        require(msg.sender == owner, "Ownable: caller is not the owner");
         _;
     }
 
@@ -91,7 +91,6 @@ contract Challenge10 {
 
     function increaseAllowance(address spender, uint256 addedValue) public returns (bool) {
         address owner_ = msg.sender;
-        // TODO overflow check
         _approve(owner_, spender, allowance(owner_, spender) + addedValue);
         return true;
     }

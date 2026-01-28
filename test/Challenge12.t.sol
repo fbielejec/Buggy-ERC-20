@@ -16,7 +16,7 @@ contract Challenge12Test is Test {
 
       address baddy = address(0xBADD);
 
-      uint256 supply_before = 10e18;
+      uint256 supply_before = token.totalSupply ();
       uint256 value = 1e18;
 
       token.gift (baddy, value);

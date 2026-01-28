@@ -52,12 +52,14 @@ contract Challenge09 {
     }
 
     function approve(address spender, uint256 amount) public returns (bool) {
+        require(spender != address(0), "ERC20: approve to the zero address");
         _allowances[msg.sender][spender] = amount;
         emit Approval(msg.sender, spender, amount);
         return true;
     }
 
     function transfer(address to, uint256 amount) public returns (bool) {
+        require(to != address(0), "ERC20: transfer to the zero address");
 
         // check balance before making a transfer
         require(_balances[msg.sender] >= amount, "ERC20: insufficient balance");
@@ -71,6 +73,8 @@ contract Challenge09 {
     }
 
     function transferFrom(address from, address to, uint256 amount) public returns (bool) {
+        require(to != address(0), "ERC20: transfer to the zero address");
+        
         uint256 currentAllowance = _allowances[from][msg.sender];
         if (currentAllowance != type(uint256).max) {
             require(currentAllowance >= amount, "ERC20: insufficient allowance");
@@ -87,6 +91,7 @@ contract Challenge09 {
     }
 
     function _mint(address account, uint256 amount) internal {
+        require(account != address(0), "ERC20: mint to the zero address");
         _totalSupply += amount;
         _balances[account] += amount;
         emit Transfer(address(0), account, amount);

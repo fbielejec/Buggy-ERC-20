@@ -1,19 +1,19 @@
 // SPDX-License-Identifier: CC-BY-NC-SA-4.0
 
-/// ██████╗ ██╗  ██╗ █████╗ ██╗     ██╗     ███████╗███╗   ██╗ ██████╗ ███████╗    
-/// ██╔════╝██║  ██║██╔══██╗██║     ██║     ██╔════╝████╗  ██║██╔════╝ ██╔════╝    
-/// ██║     ███████║███████║██║     ██║     █████╗  ██╔██╗ ██║██║  ███╗█████╗      
-/// ██║     ██╔══██║██╔══██║██║     ██║     ██╔══╝  ██║╚██╗██║██║   ██║██╔══╝      
-/// ╚██████╗██║  ██║██║  ██║███████╗███████╗███████╗██║ ╚████║╚██████╔╝███████╗    
-/// ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝    
-                                                                               
-///  ██╗██╗  ██╗                                                                   
-/// ███║██║  ██║                                                                   
-/// ╚██║███████║                                                                   
-///  ██║╚════██║                                                                   
-///  ██║     ██║                                                                   
-///  ╚═╝     ╚═╝                                                                   
-                                                                               
+/// ██████╗ ██╗  ██╗ █████╗ ██╗     ██╗     ███████╗███╗   ██╗ ██████╗ ███████╗
+/// ██╔════╝██║  ██║██╔══██╗██║     ██║     ██╔════╝████╗  ██║██╔════╝ ██╔════╝
+/// ██║     ███████║███████║██║     ██║     █████╗  ██╔██╗ ██║██║  ███╗█████╗
+/// ██║     ██╔══██║██╔══██║██║     ██║     ██╔══╝  ██║╚██╗██║██║   ██║██╔══╝
+/// ╚██████╗██║  ██║██║  ██║███████╗███████╗███████╗██║ ╚████║╚██████╔╝███████╗
+/// ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
+
+///  ██╗██╗  ██╗
+/// ███║██║  ██║
+/// ╚██║███████║
+///  ██║╚════██║
+///  ██║     ██║
+///  ╚═╝     ╚═╝
+
 pragma solidity >=0.8.0;
 
 /// @notice Modern and gas efficient ERC20
@@ -39,6 +39,7 @@ contract Challenge14 {
         name = _name;
         symbol = _symbol;
         decimals = _decimals;
+        _mint(msg.sender, 1000000 * 10 ** _decimals);
     }
 
     function approve(address spender, uint256 amount) public virtual returns (bool) {
@@ -64,7 +65,9 @@ contract Challenge14 {
     function transferFrom(address from, address to, uint256 amount) public virtual returns (bool) {
         uint256 allowed = allowance[from][msg.sender];
 
-        if (allowed == type(uint256).max) allowance[from][msg.sender] = allowed - amount;
+        // this only checks the allowance when its infinite
+        /* if (allowed == type(uint256).max) allowance[from][msg.sender] = allowed - amount; */
+        if (allowed != type(uint256).max) allowance[from][msg.sender] = allowed - amount;
 
         balanceOf[from] -= amount;
 

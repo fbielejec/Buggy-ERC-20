@@ -41,7 +41,6 @@ contract Challenge02 {
        _mint(msg.sender, 1000000 * 10 ** 18);
     }
 
-    // this is not the spec approval
     function approve(address spender, uint256 amount) public {
 
       address owner = msg.sender;

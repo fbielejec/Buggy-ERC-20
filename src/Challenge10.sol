@@ -42,7 +42,7 @@ contract Challenge10 {
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Ownable: caller is not the owner");
+      require (msg.sender == owner, "sender is not an owner");
         _;
     }
 

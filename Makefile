@@ -65,3 +65,7 @@ test-challenge15:
 .PHONY: test-challenge16
 test-challenge16:
 	forge test --match-path test/Challenge16.t.sol -vv
+
+.PHONY: test-challenge17
+test-challenge17:
+	forge test --match-path test/Challenge17.t.sol -vv
